@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>登录</title>
+    <link rel="stylesheet" href="_static/style.css" />
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h1>🔒 欢迎访问</h1>
+        <p>请输入访问密码以继续</p>
+
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="用户名" autocomplete="username" />
+            <input type="password" id="password" placeholder="请输入密码" autocomplete="current-password" required />
+            <button type="submit">进入秘密区域</button>
+            <div class="error-message" id="errorMessage"></div>
+        </form>
+
+        <!-- <p class="hint">※ 此为前端模拟认证，仅用于演示，不适用于敏感数据保护</p> -->
+    </div>
+
+    <script src="_static/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+</body>
+</html>
