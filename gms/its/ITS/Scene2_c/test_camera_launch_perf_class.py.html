@@ -1,0 +1,546 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>test_camera_launch_perf_class.py &mdash; 影像组GMS调试参考文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/./gms_doc_style.css?v=fdf9d2ed" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/ic_sagecam.jpg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=ce57eddf"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../../_static/expand-single-nav.js?v=d5d9b014"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="test_jpeg_capture_perf_class.py" href="test_jpeg_capture_perf_class.py.html" />
+    <link rel="prev" title="Scene2_c" href="Scene2_c.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            GmsDoc
+              <img src="../../../_static/html_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../gms_doc.html">GMS 问题参考文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../cts/cts.html">cts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/CtsAppSecurityHostTestCases/CtsAppSecurityHostTestCases.html">CtsAppSecurityHostTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsAppSecurityHostTestCases/android.appsecurity.cts.EphemeralTest/android.appsecurity.cts.EphemeralTest.html">android.appsecurity.cts.EphemeralTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsAppSecurityHostTestCases/android.appsecurity.cts.EphemeralTest/testExposedSystemActivities.html">testExposedSystemActivities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/CtsAppTestCases/CtsAppTestCases.html">CtsAppTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsAppTestCases/android.app.cts.SystemFeaturesTest/android.app.cts.SystemFeaturesTest.html">android.app.cts.SystemFeaturesTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsAppTestCases/android.app.cts.SystemFeaturesTest/testCameraFeatures.html">testCameraFeatures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/CtsBiometricsTestCases/CtsBiometricsTestCases.html">CtsBiometricsTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsBiometricsTestCases/android.server.biometrics.BiometricSimpleTests/android.server.biometrics.BiometricSimpleTests.html">android.server.biometrics.BiometricSimpleTests</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsBiometricsTestCases/android.server.biometrics.BiometricSimpleTests/testPackageManagerAndDumpsysMatch.html">testPackageManagerAndDumpsysMatch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/CtsCameraTestCases/CtsCameraTestCases.html">CtsCameraTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraGLTest/android.hardware.cts.CameraGLTest.html">android.hardware.cts.CameraGLTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraGLTest/testCameraToSurfaceTextureMetadata.html">testCameraToSurfaceTextureMetadata</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraTest/android.hardware.cts.CameraTest.html">android.hardware.cts.CameraTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraTest/testPreviewFpsRange.html">testPreviewFpsRange</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraTest/testVideoSnapshot.html">testVideoSnapshot</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraTest/testSceneMode.html">testSceneMode</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraTest/testMultiCameraRelease.html">testMultiCameraRelease</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraTest/testPreviewCallback.html">testPreviewCallback</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraTest/testSetOneShotPreviewCallback.html">testSetOneShotPreviewCallback</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.cts.CameraTest/testMeteringAreas.html">testMeteringAreas</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/android.hardware.camera2.cts.RecordingTest.html">android.hardware.camera2.cts.RecordingTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/testBasicRecording.html">testBasicRecording</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/testRecordingFromPersistentSurface.html">testRecordingFromPersistentSurface</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/testConstrainedHighSpeedRecording.html">testConstrainedHighSpeedRecording</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/testRecordingFramerateLowToHigh.html">testRecordingFramerateLowToHigh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/testRecordingWithDifferentPreviewSizes.html">testRecordingWithDifferentPreviewSizes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/testBasicVideoStabilizationRecording.html">testBasicVideoStabilizationRecording</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/testBasicEncoderProfilesRecording.html">testBasicEncoderProfilesRecording</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/testIntermediateSurfaceRecording.html">testIntermediateSurfaceRecording</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.BurstCaptureTest/android.hardware.camera2.cts.BurstCaptureTest.html">android.hardware.camera2.cts.BurstCaptureTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.BurstCaptureTest/testJpegBurst.html">testJpegBurst</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.BurstCaptureTest/testYuvBurst.html">testYuvBurst</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CameraDeviceTest/android.hardware.camera2.cts.CameraDeviceTest.html">android.hardware.camera2.cts.CameraDeviceTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CameraDeviceTest/testCameraDeviceZSLTemplate.html">testCameraDeviceZSLTemplate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CameraDeviceTest/testCameraDevicePreviewTemplate.html">testCameraDevicePreviewTemplate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CameraDeviceTest/testCameraDeviceVideoSnapShotTemplate.html">testCameraDeviceVideoSnapShotTemplate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CameraDeviceTest/testCameraDeviceRecordingTemplate.html">testCameraDeviceRecordingTemplate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CameraDeviceTest/testCameraDeviceManualTemplate.html">testCameraDeviceManualTemplate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CameraDeviceTest/testCameraDeviceStillTemplate.html">testCameraDeviceStillTemplate</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.ExtendedCameraCharacteristicsTest/android.hardware.camera2.cts.ExtendedCameraCharacteristicsTest.html">android.hardware.camera2.cts.ExtendedCameraCharacteristicsTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.ExtendedCameraCharacteristicsTest/testStaticBurstCharacteristics.html">testStaticBurstCharacteristics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.ExtendedCameraCharacteristicsTest/testAvailableStreamConfigs.html">testAvailableStreamConfigs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.ExtendedCameraCharacteristicsTest/testCameraOrientationAlignedWithDevice.html">testCameraOrientationAlignedWithDevice</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.ExtendedCameraCharacteristicsTest/testConstrainedHighSpeedCapability.html">testConstrainedHighSpeedCapability</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CameraManagerTest/android.hardware.camera2.cts.CameraManagerTest.html">android.hardware.camera2.cts.CameraManagerTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CameraManagerTest/testCameraManagerListenerCallbacks.html">testCameraManagerListenerCallbacks</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.PerformanceTest/android.hardware.camera2.cts.PerformanceTest.html">android.hardware.camera2.cts.PerformanceTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.PerformanceTest/testCameraLaunch.html">testCameraLaunch</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.PerformanceTest/testMultipleCapture.html">testMultipleCapture</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.PerformanceTest/testSingleCapture.html">testSingleCapture</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.SurfaceViewPreviewTest/android.hardware.camera2.cts.SurfaceViewPreviewTest.html">android.hardware.camera2.cts.SurfaceViewPreviewTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.SurfaceViewPreviewTest/testPreparePerformance.html">testPreparePerformance</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.StaticMetadataTest/android.hardware.camera2.cts.StaticMetadataTest.html">android.hardware.camera2.cts.StaticMetadataTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.StaticMetadataTest/testCapabilities.html">testCapabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.FlashlightTest/android.hardware.camera2.cts.FlashlightTest.html">android.hardware.camera2.cts.FlashlightTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.FlashlightTest/testTorchCallback.html">testTorchCallback</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.FlashlightTest/testCameraDeviceOpenAfterTorchOn.html">testCameraDeviceOpenAfterTorchOn</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.FlashlightTest/testSetTorchModeOnOff.html">testSetTorchModeOnOff</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.FlashlightTest/testTurnOnTorchWithStrengthLevel.html">testTurnOnTorchWithStrengthLevel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.FlashlightTest/testTorchModeExceptions.html">testTorchModeExceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.AllocationTest/android.hardware.camera2.cts.AllocationTest.html">android.hardware.camera2.cts.AllocationTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.AllocationTest/testAllocationFromCameraFlexibleYuv.html">testAllocationFromCameraFlexibleYuv</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.AllocationTest/testBlackWhite.html">testBlackWhite</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CaptureRequestTest/android.hardware.camera2.cts.CaptureRequestTest.html">android.hardware.camera2.cts.CaptureRequestTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CaptureRequestTest/testEdgeModeControl.html">testEdgeModeControl</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CaptureRequestTest/testFlashTurnOff.html">testFlashTurnOff</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CaptureRequestTest/testFlashControl.html">testFlashControl</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CaptureRequestTest/testAeModeAndLock.html">testAeModeAndLock</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.CaptureRequestTest/testColorCorrectionControl.html">testColorCorrectionControl</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RobustnessTest/android.hardware.camera2.cts.RobustnessTest.html">android.hardware.camera2.cts.RobustnessTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RobustnessTest/testAeAndAfCausality.html">testAeAndAfCausality</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/CtsMediaTestCases/CtsMediaTestCases.html">CtsMediaTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsMediaTestCases/android.media.cts.CamcorderProfileTest/android.media.cts.CamcorderProfileTest.html">android.media.cts.CamcorderProfileTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsMediaTestCases/android.media.cts.CamcorderProfileTest/testGet.html">testGet</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsMediaTestCases/android.media.cts.CamcorderProfileTest/testGetWithId.html">testGetWithId</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/CtsPermissionTestCases/CtsPermissionTestCases.html">CtsPermissionTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsPermissionTestCases/android.permission.cts.ProviderPermissionTest/android.permission.cts.ProviderPermissionTest.html">android.permission.cts.ProviderPermissionTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsPermissionTestCases/android.permission.cts.ProviderPermissionTest/testWriteMediaStorage.html">testWriteMediaStorage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/CtsSensorPrivacyTestCases/CtsSensorPrivacyTestCases.html">CtsSensorPrivacyTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsSensorPrivacyTestCases/android.sensorprivacy.cts.SensorPrivacyCameraTest/android.sensorprivacy.cts.SensorPrivacyCameraTest.html">android.sensorprivacy.cts.SensorPrivacyCameraTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsSensorPrivacyTestCases/android.sensorprivacy.cts.SensorPrivacyCameraTest/testOpStartsRunningAfterStartedWithSensoryPrivacyEnabled.html">testOpStartsRunningAfterStartedWithSensoryPrivacyEnabled</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/CtsUsesNativeLibraryTest.html">CtsUsesNativeLibraryTest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/android.appmanifest.cts.UsesNativeLibraryTestCase.html">android.appmanifest.cts.UsesNativeLibraryTestCase</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/testOldAppOptionallyDependsOnPrivateLib.html">testOldAppOptionallyDependsOnPrivateLib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/testNewAppDependsOnSomePublicLibraries.html">testNewAppDependsOnSomePublicLibraries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/testOldAppDependsOnAllPublicLibraries.html">testOldAppDependsOnAllPublicLibraries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/testOldAppOptionallyDependsOnNonExistingLib.html">testOldAppOptionallyDependsOnNonExistingLib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/testNewAppOptionallyDependsOnSomePublicLibraries.html">testNewAppOptionallyDependsOnSomePublicLibraries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/testOldAppDependsOnPrivateLib.html">testOldAppDependsOnPrivateLib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/testNewAppDependsOnAllPublicLibraries.html">testNewAppDependsOnAllPublicLibraries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/testOldAppDependsOnNonExistingLib.html">testOldAppDependsOnNonExistingLib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsUsesNativeLibraryTest/android.appmanifest.cts.UsesNativeLibraryTestCase/testOldAppDependsOnSomePublicLibraries.html">testOldAppDependsOnSomePublicLibraries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/CtsVirtualDevicesCameraTestCases.html">CtsVirtualDevicesCameraTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraCameraXTest/android.virtualdevice.cts.camera.VirtualCameraCameraXTest.html">android.virtualdevice.cts.camera.VirtualCameraCameraXTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraCameraXTest/virtualDeviceContext_availableCameraInfos_returnsVirtualCameras_withCharacteristics.html">virtualDeviceContext_availableCameraInfos_returnsVirtualCameras_withCharacteristics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraCameraXTest/virtualDeviceContext_takePicture.html">virtualDeviceContext_takePicture</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraCameraXTest/virtualDeviceContext_availableCameraInfos_returnsVirtualCameras.html">virtualDeviceContext_availableCameraInfos_returnsVirtualCameras</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraCameraXTest/virtualDeviceContext_takePicture_withCharacteristics.html">virtualDeviceContext_takePicture_withCharacteristics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraTest/android.virtualdevice.cts.camera.VirtualCameraTest.html">android.virtualdevice.cts.camera.VirtualCameraTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraTest/createCharacteristicsVirtualCamera_withSessionParameters_succeeds.html">createCharacteristicsVirtualCamera_withSessionParameters_succeeds</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraTest/createDefaultVirtualCamera_withSessionParameters_succeeds.html">createDefaultVirtualCamera_withSessionParameters_succeeds</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraTest/virtualCamera_hasCorrectLensFacing.html">virtualCamera_hasCorrectLensFacing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraTest/createVirtualCamera_withCameraCharacteristics_succeeds.html">createVirtualCamera_withCameraCharacteristics_succeeds</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/CtsVirtualDevicesCameraTestCases/android.virtualdevice.cts.camera.VirtualCameraTest/createVirtualCamera_withSensorInfo_succeeds.html">createVirtualCamera_withSensorInfo_succeeds</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/android_data_source_test/android_data_source_test.html">android_data_source_test</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/android_data_source_test/com.google.ar.infrastructure.compliance.sft.androiddatasource.AndroidDataSourceTest/com.google.ar.infrastructure.compliance.sft.androiddatasource.AndroidDataSourceTest.html">com.google.ar.infrastructure.compliance.sft.androiddatasource.AndroidDataSourceTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/android_data_source_test/com.google.ar.infrastructure.compliance.sft.androiddatasource.AndroidDataSourceTest/testCameraRollingShutterTime.html">testCameraRollingShutterTime</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cts/MctsMediaMiscTestCases/MctsMediaMiscTestCases.html">MctsMediaMiscTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../cts/MctsMediaMiscTestCases/android.media.misc.cts.NativeImageReaderTest/android.media.misc.cts.NativeImageReaderTest.html">android.media.misc.cts.NativeImageReaderTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../cts/MctsMediaMiscTestCases/android.media.misc.cts.NativeImageReaderTest/testTakePictures.html">testTakePictures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ctsv/ctsv.html">ctsv</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ctsv/CTS-V/CTS-V.html">CTS-V</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../ctsv/CTS-V/%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3%E5%8F%8A%E6%89%8B%E5%86%8C/%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3%E5%8F%8A%E6%89%8B%E5%86%8C.html">相关技术文档及手册</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../ctsv/CTS-V/%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3%E5%8F%8A%E6%89%8B%E5%86%8C/%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3%E5%8F%8A%E6%89%8B%E5%86%8C_case.html">相关技术文档及手册</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ctsv/CTS-V/XTS%E6%B5%8B%E8%AF%95%E5%89%8D%E6%89%8B%E6%9C%BA%E8%AE%BE%E7%BD%AE/XTS%E6%B5%8B%E8%AF%95%E5%89%8D%E6%89%8B%E6%9C%BA%E8%AE%BE%E7%BD%AE.html">XTS测试前手机设置</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../ctsv/CTS-V/XTS%E6%B5%8B%E8%AF%95%E5%89%8D%E6%89%8B%E6%9C%BA%E8%AE%BE%E7%BD%AE/XTS%E6%B5%8B%E8%AF%95%E5%89%8D%E6%89%8B%E6%9C%BA%E8%AE%BE%E7%BD%AE_case.html">XTS测试前手机设置</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ctsv/CTS-V/FOV/FOV.html">FOV</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../ctsv/CTS-V/FOV/FOV_case.html">FOV</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ctsv/CTS-V/FlashLight/FlashLight.html">FlashLight</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../ctsv/CTS-V/FlashLight/FlashLight_case.html">FlashLight</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../its.html">its</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../release_note/release_note.html">ITS 版本说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../release_note/its_release_notes_16.html">Android 16 相机 ITS 版本说明</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_16.html#id2">新增场景或更新后的场景</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_16.html#id3">新测试</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_16.html#id4">重构的测试</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_16.html#id5">已废弃的测试</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../release_note/its_release_notes_17.html">Android 17 相机 ITS 版本说明</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#id2">新增场景或更新后的场景</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#id3">新测试</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#id4">重构的测试</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#id5">已废弃的测试</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#id6">测试活动分离</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#gen2">Gen2 测试装置</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#pass">新测试状态：PASS*</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#id7">改进了图卡缩放功能</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#id8">支持广色域测试的新平板电脑</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../release_note/its_release_notes_17.html#build">提交汇总结果以进行 build 审批</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../ITS.html">ITS</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../Scene0/Scene0.html">Scene0</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene0/test_read_write.py.html">test_read_write.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene0/test_solid_color_test_pattern.py.html">test_solid_color_test_pattern.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene0/test_test_patterns.py.html">test_test_patterns.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene0/test_tonemap_curve.py.html">test_tonemap_curve.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene0/test_request_capture_match.py.html">test_request_capture_match.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene1_1/Scene1_1.html">Scene1_1</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_1/test_3a.py.html">test_3a.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_1/test_ev_compensation_advanced.py.html">test_ev_compensation_advanced.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_1/test_ev_compensation_basic.py.html">test_ev_compensation_basic.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_1/test_param_flash_mode.py.html">test_param_flash_mode.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_1/test_param_noise_reduction.py.html">test_param_noise_reduction.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_1/test_exposure_x_iso.py.html">test_exposure_x_iso.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_1/test_locked_burst.py.html">test_locked_burst.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_1/test_burst_capture.py.html">test_burst_capture.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene1_2/Scene1_2.html">Scene1_2</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_2/test_param_sensitivity.py.html">test_param_sensitivity.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_2/test_raw_exposure.py.html">test_raw_exposure.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_2/test_reprocess_noise_reduction.py.html">test_reprocess_noise_reduction.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_2/test_param_noise_reduction.py.html">test_param_noise_reduction.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene1_3/Scene1_3.html">Scene1_3</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_3/test_sensitivity_priority.py.html">test_sensitivity_priority.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_3/test_exposure_time_priority.py.html">test_exposure_time_priority.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene1_3/test_dng_noise_model.py.html">test_dng_noise_model.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene2_b/Scene2_b.html">Scene2_b</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene2_b/test_yuv_jpeg_capture_sameness.py.html">test_yuv_jpeg_capture_sameness.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4 current"><a class="reference internal" href="Scene2_c.html">Scene2_c</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">test_camera_launch_perf_class.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="test_jpeg_capture_perf_class.py.html">test_jpeg_capture_perf_class.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="test_default_camera_hdr.py.html">test_default_camera_hdr.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene2_g/Scene2_g.html">Scene2_g</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene2_g/test_preview_num_faces.py.html">test_preview_num_faces.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene3/Scene3.html">Scene3</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene3/test_3a_consistency.py.html">test_3a_consistency.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene3/test_edge_enhancement.py.html">test_edge_enhancement.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene3/test_flip_mirror.py.html">test_flip_mirror.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene3/test_reprocess_edge_enhancement.py.html">test_reprocess_edge_enhancement.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene5/Scene5.html">Scene5</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene5/test_lens_shading_and_color_uniformity.py.html">test_lens_shading_and_color_uniformity.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene6/Scene6.html">Scene6</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene6/test_preview_zoom.py.html">test_preview_zoom.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene6/test_session_characteristics_zoom.py.html">test_session_characteristics_zoom.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene8/Scene8.html">Scene8</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene8/test_ae_awb_regions.py.html">test_ae_awb_regions.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene_video/Scene_video.html">Scene_video</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene_video/test_preview_frame_drop.py.html">test_preview_frame_drop.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Sensor_fusion/Sensor_fusion.html">Sensor_fusion</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Sensor_fusion/test_sensor_fusion.py.html">test_sensor_fusion.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Sensor_fusion/test_video_stabilization.py.html">test_video_stabilization.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Sensor_fusion/test_video_stabilization_jca.py.html">test_video_stabilization_jca.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Feature_combination/Feature_combination.html">Feature_combination</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Feature_combination/test_feature_combination.py.html">test_feature_combination.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene_flash/Scene_flash.html">Scene_flash</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene_flash/test_auto_flash.py.html">test_auto_flash.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene_flash/test_led_snapshot.py.html">test_led_snapshot.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene_flash/test_night_mode_indicator.py.html">test_night_mode_indicator.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Scene_flash/test_preview_min_frame_rate.py.html">test_preview_min_frame_rate.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../Scene_ip/Scene_ip.html">Scene_ip</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../Scene_ip/test_default_jca_ip.py.html">test_default_jca_ip.py</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../scene_gen2_chart/scene_gen2_chart.html">scene_gen2_chart</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../scene_gen2_chart/test_tonemap_sequence.py.html">test_tonemap_sequence.py</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../scene_gen2_chart/test_multi_camera_switch.py.html">test_multi_camera_switch.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../its_results/its_results.html">各项目 ITS 测试结果记录</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../its_results/report_gh67j2.html">GH67J2 项目 ITS 测试结果记录</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../its_results/report_kn8.html">KN8 项目 ITS 测试结果记录</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../its_results/report_t1103.html">T1103 项目 ITS 测试结果记录</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../vts/vts.html">vts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../vts/VtsHalCameraProviderV2_4TargetTest/VtsHalCameraProviderV2_4TargetTest.html">VtsHalCameraProviderV2_4TargetTest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vts/VtsHalCameraProviderV2_4TargetTest/PerInstance_CameraHidlTest/PerInstance_CameraHidlTest.html">PerInstance/CameraHidlTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../vts/VtsHalCameraProviderV2_4TargetTest/PerInstance_CameraHidlTest/setTorchMode_0_internal_0.html">setTorchMode/0_internal_0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vts/elf_alignment_test/elf_alignment_test.html">elf_alignment_test</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vts/elf_alignment_test/ElfTestPartitionsAligned_ElfAlignmentTest/ElfTestPartitionsAligned_ElfAlignmentTest.html">ElfTestPartitionsAligned/ElfAlignmentTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../vts/elf_alignment_test/ElfTestPartitionsAligned_ElfAlignmentTest/VerifyLoadSegmentAlignment_6.html">VerifyLoadSegmentAlignment/6</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vts/vts_treble_vintf_vendor_test/vts_treble_vintf_vendor_test.html">vts_treble_vintf_vendor_test</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../vts/vts_treble_vintf_vendor_test/DeviceManifest_SingleHidlTest/DeviceManifest_SingleHidlTest.html">DeviceManifest/SingleHidlTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../vts/vts_treble_vintf_vendor_test/DeviceManifest_SingleHidlTest/InterfaceIsReleased_vendor_sprd_algoservice_1_0__IAlgoService_default_22.html">InterfaceIsReleased/vendor_sprd_algoservice_1_0__IAlgoService_default_22</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../bts/bts.html">bts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bts/BTS/BTS.html">BTS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../bts/BTS/CVE/CVE.html">CVE</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../bts/BTS/CVE/CVE-2023-4863.html">CVE-2023-4863</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../mada/mada.html">mada</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../mada/M51-Microphone_and_Camera_toggles.html">GMS规范测试：M51 - Microphone and Camera toggles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gtsi/gtsi.html">gtsi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../gtsi/GtsInteractivePermissionUiTestCases/GtsInteractivePermissionUiTestCases.html">GtsInteractivePermissionUiTestCases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../gtsi/GtsInteractivePermissionUiTestCases/com.google.android.permissionui.gts.MicCameraToggleInteractiveTest/com.google.android.permissionui.gts.MicCameraToggleInteractiveTest.html">com.google.android.permissionui.gts.MicCameraToggleInteractiveTest</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../gtsi/GtsInteractivePermissionUiTestCases/com.google.android.permissionui.gts.MicCameraToggleInteractiveTest/micAndCameraToggleTest.html">micAndCameraToggleTest</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../md/mdindex.html">MarkDown Zone</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GmsDoc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../gms_doc.html">GMS 问题参考文档</a></li>
+          <li class="breadcrumb-item"><a href="../../its.html">its</a></li>
+          <li class="breadcrumb-item"><a href="../ITS.html">ITS</a></li>
+          <li class="breadcrumb-item"><a href="Scene2_c.html">Scene2_c</a></li>
+      <li class="breadcrumb-item active">test_camera_launch_perf_class.py</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="test-camera-launch-perf-class-py">
+<h1>test_camera_launch_perf_class.py<a class="headerlink" href="#test-camera-launch-perf-class-py" title="Link to this heading"></a></h1>
+<p><strong>测试项描述</strong></p>
+<p><em>预检查项</em></p>
+<blockquote>
+<div><p>如果相机不是 primaryCamera，不参与测试。
+PrimaryCamera 判定标准：前、后摄中各自 ID 最小的摄像头为 primaryCamera。</p>
+</div></blockquote>
+<hr class="docutils" />
+<p><em>测试内容与目标</em></p>
+<blockquote>
+<div><p>按照 CDD 中 2.2.7.2 相机一节 [7.5/H-1-6] 的规定，为 S 性能等级测试相机启动延迟时间。</p>
+<p>通过条件：
+根据 CTS 摄像头性能测试在 ITS 照明条件 (3000K) 下对这两种主摄像头的测量，
+摄像头的启动延迟（从打开摄像头到第一个预览帧）必须小于 500 毫秒（Android 13 之前要求为 600ms，从 Android 13 开始要求为 500ms）。</p>
+</div></blockquote>
+<div class="signature-right docutils container">
+<p>[孙海鑫 记录于 2024.11.10]</p>
+</div>
+<hr class="docutils" />
+<p><strong>历史问题</strong></p>
+<table class="docutils align-default" id="itsscene2ctestcameralaunchperfclass">
+<colgroup>
+<col style="width: 8.0%" />
+<col style="width: 92.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>跳转历史问题</p></td>
+<td><p>P673L <a class="reference internal" href="../../../cts/CtsCameraTestCases/android.hardware.camera2.cts.RecordingTest/testBasicRecording.html#test-basic-recording-p673l"><span class="std std-ref">MTK_CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES 问题</span></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span> <span class="ne">Exception</span> <span class="n">occurred</span> <span class="ow">in</span> <span class="n">test_camera_launch</span><span class="o">.</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2026, SageCam.。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+  <script src="/_static/auth.js"></script>
+  <script src="/gms/_static/auth.js"></script>
+  <script>checkLoginStatus();</script>
+  <!-- 页面加载后自动执行鉴权 -->
+   
+  <!-- 保留父模板内容，避免丢失脚本 -->
+
+
+</body>
+</html>
