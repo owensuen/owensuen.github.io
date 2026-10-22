@@ -310,3 +310,10 @@ aside.footnote > ol.simple li p {
 }
 /* cpp 代码块 margin-bottom 较大，去除 CtsCameraTestCases#BurstCaptureTest#testYuvBurst end */
 
+/* 允许长标题换行，防止溢出 */
+h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;      /* 旧版浏览器兼容 */
+    overflow-wrap: break-word;  /* 标准属性 */
+    word-break: normal;      /* normal 保留英文单词完整性，仅在必要时断行； break-all 强制在任意字符间断行，适用于无空格长字符串 */
+}
+
