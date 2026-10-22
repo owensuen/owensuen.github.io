@@ -64,7 +64,12 @@ function checkLoginStatus() {
             urlStr === rootUrlPath + '/gms/index.html' ||
             urlStr === rootUrlPath
         ) {
-            window.location.href = '/gms_doc.html';
+            if ((window.location.protocol === 'http:' || window.location.protocol === 'https:')
+                && window.location.pathname.startsWith('/gms/')) {
+                window.location.href = '/gms/gms_doc.html';
+            } else {
+                window.location.href = '/gms_doc.html';
+            }
             console.log('redirect to href: ', window.location.href);
             return;
         }

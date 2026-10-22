@@ -37,7 +37,12 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
                     || url.pathname === '/index.html'
                     || url.pathname === '/gms/login.html'
                     || url.pathname === '/gms/index.html') {
-                    window.location.href = 'gms_doc.html';
+                    if ((url === 'http:' || url === 'https:')
+                        && url.startsWith('/gms/')) {
+                        window.location.href = '/gms/gms_doc.html';
+                    } else {
+                        window.location.href = 'gms_doc.html';
+                    }
                 } else {
                     window.location.href = sessionTargetUrl;
                 }
