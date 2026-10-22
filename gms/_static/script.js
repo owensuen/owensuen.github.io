@@ -42,7 +42,12 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
                     window.location.href = sessionTargetUrl;
                 }
             } else {
-                window.location.href = 'gms_doc.html';
+                if ((window.location.protocol === 'http:' || window.location.protocol === 'https:')
+                    && window.location.pathname.startsWith('/gms/')) {
+                    window.location.href = '/gms/gms_doc.html';
+                } else {
+                    window.location.href = 'gms_doc.html';
+                }
             }
             // 记录目标地址以供登陆后直接跳转到目标地址 end
         } else {
